@@ -1,0 +1,163 @@
+*,
+::before,
+::after {
+    margin: 0px;
+    padding: 0px;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+:root {
+    --spacing-s: 5px;
+    --spacing-m: 10px;
+    --spacing-l: 15px;
+    --spacing-xl: 20px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-xl) var(--spacing-l);
+    background-color: lightgray;
+    margin-bottom: var(--spacing-xl);
+}
+
+main {
+    padding: 0px var(--spacing-m);
+}
+
+header .log-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    column-gap: var(--spacing-l);
+}
+
+header a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.add-form,
+.edit-form {
+    margin-bottom: calc(var(--spacing-xl) * 2);
+    max-width: 60%;
+    margin: auto;
+}
+
+#input-task,
+#edit-title {
+    padding: 5px;
+    font-size: 1.1rem;
+    border-radius: var(--spacing-s);
+    border: 1px solid black;
+    width: 40%;
+}
+
+.add-button,
+.edit-button {
+    padding: var(--spacing-s) var(--spacing-l);
+    background-color: green;
+    border: none;
+    border-radius: var(--spacing-s);
+    color: white;
+    font-size: 1.1rem;
+}
+
+.task-list-container {
+    max-width: 60%;
+    margin: auto;
+}
+
+.task-list-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: var(--spacing-l);
+    font-weight: bold;
+    margin-bottom: var(--spacing-m);
+    width: 100%;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: rgb(238, 238, 238);
+    margin-bottom: var(--spacing-s);
+    border-radius: var(--spacing-s);
+    padding: var(--spacing-s);
+    transition: all 0.1s ease-in-out;
+    position: relative;
+}
+
+.task:hover {
+    background-color: lightgray;
+}
+
+.task-buttons-container {
+    position: absolute;
+    right: -75px;
+    background-color: rgb(238, 238, 238);
+    padding: var(--spacing-s);
+    align-self: center;
+    border-top-right-radius: var(--spacing-s);
+    border-bottom-right-radius: var(--spacing-s);
+    transition: all 0.1s ease-in-out;
+}
+
+.task-buttons-container:hover {
+    background-color: lightgray;
+}
+
+.task-buttons-container button {
+    padding: 1px;
+    width: 47px;
+    border-radius: var(--spacing-s);
+    border: none;
+    transition: all 0.1s ease-in-out;
+}
+
+.done-button {
+    background-color: green;
+    color: white;
+}
+
+.edit-link {
+    background-color: lightgreen;
+    text-decoration: none;
+    color: black;
+    width: 47px;
+    display: inline-block;
+    border-radius: var(--spacing-s);
+    border: none;
+    transition: all 0.1s ease-in-out;
+    text-align: center;
+}
+
+.edit-link:hover {
+    background-color: rgb(66, 66, 66);
+    color: white;
+}
+
+.delete-button {
+    background-color: rgb(255, 62, 62);
+    color: rgb(238, 238, 238);
+}
+
+.delete-button:hover {
+    background-color: rgb(66, 66, 66);
+}
+
+.error-container {
+    margin-top: var(--spacing-m);
+    color: red;
+}
