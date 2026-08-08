@@ -12,7 +12,7 @@ async function fetchEditAndRender() {
     }
 }
 
-document.querySelector(".edit-form").addEventListener("submit", (e) => {
+document.querySelector(".edit-form").addEventListener("submit", async(e) => {
     e.preventDefault();
 
     const titleValue = document.querySelector("#edit-title").value;
@@ -21,11 +21,11 @@ document.querySelector(".edit-form").addEventListener("submit", (e) => {
         title: titleValue,
     };
 
-    if (editTask(id, formData)) {
+    if (await editTask(id, formData)) {
         window.location.href = "/";
     }
 });
 
-document.querySelector(".logout-button").addEventListener("click", (event) => {
-    logout();
+document.querySelector(".logout-button").addEventListener("click", async(event) => {
+    await logout();
 });

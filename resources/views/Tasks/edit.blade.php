@@ -12,11 +12,11 @@
         <a href="/">
             <h1>Todo List - Edit</h1>
         </a>
-        <nav class="navbar">
+        <!-- <nav class="navbar">
             <ul>
                 <li><a href="">Users</a></li>
             </ul>
-        </nav>
+        </nav> -->
         <ul class="log-user-container">
             <li class="log-user">Reygin Susas</li>
             <li><button class="logout-button">Logout</button></li>
