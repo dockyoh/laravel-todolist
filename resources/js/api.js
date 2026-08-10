@@ -1,9 +1,7 @@
-// const API_URL = "http://127.0.0.1:8000/api/tasks";
 const API_URL = "/api/tasks";
-const token = localStorage.getItem("myToken");
 
 // FETCH/GET DATA FROM API
-export async function fetchData() {
+export async function fetchData(token) {
     try {
         const response = await fetch(API_URL, {
             method: "GET",
@@ -34,7 +32,30 @@ export async function fetchData() {
     }
 }
 
-export async function fetchEditData(id) {
+export async function fetchLogUser(token) {
+    try {
+        const response = await fetch("/api/user", {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP status error: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        return result.data.name;
+    } catch (error) {
+        console.error("FAILED TO FETCH LOG USER, ", error);
+        throw error;
+    }
+}
+
+export async function fetchEditData(id, token) {
     try {
         const response = await fetch(`/api/tasks/${id}`, {
             method: "GET",
@@ -65,7 +86,7 @@ export async function fetchEditData(id) {
 }
 
 // CREATE DATA FROM API
-export async function addTask(data) {
+export async function addTask(data, token) {
     try {
         const response = await fetch(API_URL, {
             method: "POST",
@@ -95,7 +116,7 @@ export async function addTask(data) {
 }
 
 // DELETE DATA FROM API
-export async function deleteTask(id) {
+export async function deleteTask(id, token) {
     try {
         const response = await fetch(`/api/tasks/${id}`, {
             method: "DELETE",
@@ -124,7 +145,7 @@ export async function deleteTask(id) {
 }
 
 // EDIT/DONE DATA FROM API
-export async function doneTask(id) {
+export async function doneTask(id, token) {
     const done = {
         is_completed: true,
     };
@@ -158,7 +179,7 @@ export async function doneTask(id) {
 }
 
 // EDIT DATA FROM API
-export async function editTask(id, formData) {
+export async function editTask(id, formData, token) {
     try {
         const response = await fetch(`/api/tasks/${id}`, {
             method: "PUT",
@@ -256,7 +277,7 @@ export async function login(data) {
     }
 }
 
-export async function logout() {
+export async function logout(token) {
     if (!token) {
         window.location.href = "/Users/login";
         return;

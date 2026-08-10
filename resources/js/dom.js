@@ -23,8 +23,9 @@ export function renderData(datas) {
     templateContainer.appendChild(fragment);
 }
 
-export function renderEditForm(data) {
+export function renderEditForm(data, username) {
     document.querySelector("#edit-title").value = data.title;
+    document.querySelector(".log-user").textContent = username;
 }
 
 export function renderAuthErrors(errors) {
@@ -42,4 +43,8 @@ export function renderAuthErrors(errors) {
     });
 
     templateContainer.appendChild(fragment);
+}
+
+export function renderLogUser(username) {
+    document.querySelector(".log-user").textContent = username;
 }

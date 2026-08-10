@@ -18,7 +18,7 @@
             </ul>
         </nav> -->
         <ul class="log-user-container">
-            <li class="log-user">Reygin Susas</li>
+            <li class="log-user"></li>
             <li><button class="logout-button">Logout</button></li>
         </ul>
     </header>

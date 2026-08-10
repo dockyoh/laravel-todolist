@@ -1,14 +1,26 @@
-import { fetchData, addTask, deleteTask, doneTask, logout } from "./api.js";
-import { renderData } from "./dom.js";
+import {
+    fetchData,
+    addTask,
+    deleteTask,
+    doneTask,
+    logout,
+    fetchLogUser,
+} from "./api.js";
+import { renderData, renderLogUser } from "./dom.js";
 
 const addForm = document.querySelector(".add-form");
+const token = localStorage.getItem("myToken");
 
 fetchAndRender();
 
 async function fetchAndRender() {
-    const data = await fetchData();
-    if (data) {
+    const data = await fetchData(token);
+    const userData = await fetchLogUser(token);
+
+    if (data && userData) {
         renderData(data);
+        renderLogUser(userData);
+        console.log(userData);
     }
 }
 
@@ -19,7 +31,7 @@ addForm.addEventListener("submit", async (e) => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    if (await addTask(data)) {
+    if (await addTask(data, token)) {
         await fetchAndRender();
         addForm.reset();
     }
@@ -35,7 +47,7 @@ document
 
         if (doneButton) {
             const id = doneButton.dataset.id;
-            if (await doneTask(id)) {
+            if (await doneTask(id, token)) {
                 await fetchAndRender();
             }
         }
@@ -47,7 +59,7 @@ document
 
         if (deleteButton) {
             const id = deleteButton.dataset.id;
-            if (await deleteTask(id)) {
+            if (await deleteTask(id, token)) {
                 await fetchAndRender();
             }
         }
@@ -56,5 +68,5 @@ document
 document
     .querySelector(".logout-button")
     .addEventListener("click", async (event) => {
-        await logout();
+        await logout(token);
     });
